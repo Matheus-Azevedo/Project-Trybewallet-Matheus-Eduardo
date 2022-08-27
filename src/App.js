@@ -7,10 +7,12 @@ function App() {
   return (
     <Switch>
       <Route
+        exact
         path="/"
         render={ (props) => <Login { ...props } /> }
       />
       <Route
+        exact
         path="/carteira"
         render={ (props) => <Wallet { ...props } /> }
       />
