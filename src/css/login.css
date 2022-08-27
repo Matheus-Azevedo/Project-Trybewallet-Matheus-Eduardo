@@ -2,11 +2,11 @@ fieldset {
   border: 2px solid;
   display: flex;
   flex-direction: column;
+  height: 150px;
   justify-content: center;
   justify-items: center;
-  height: 150px;
-  width: 250px;
   margin: auto;
+  width: 250px;
 }
 
 input {
