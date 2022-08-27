@@ -1,12 +1,12 @@
-fieldset{
-  border: 2px solid ;
+fieldset {
+  border: 2px solid;
   display: flex;
   flex-direction: column;
-  justify-items: center;
   justify-content: center;
-  width: 250px;
+  justify-items: center;
   height: 150px;
-  margin:auto;
+  width: 250px;
+  margin: auto;
 }
 
 input {
