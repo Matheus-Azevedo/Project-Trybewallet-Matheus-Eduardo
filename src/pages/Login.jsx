@@ -11,7 +11,7 @@ class Login extends React.Component {
     isEntryButtonDisabled: true,
   };
 
-  onHandleChange = ({ target }) => {
+  onInputChange = ({ target }) => {
     const { name, value } = target;
     this.setState({ [name]: value }, () => {
       const { email, password } = this.state;
@@ -23,7 +23,7 @@ class Login extends React.Component {
     });
   };
 
-  onHandleSubmit = () => {
+  onSubmit = () => {
     const { history, dispatch } = this.props;
     const { email } = this.state;
     dispatch(requestEmail(email));
@@ -43,7 +43,7 @@ class Login extends React.Component {
               type="text"
               name="email"
               value={ email }
-              onChange={ this.onHandleChange }
+              onChange={ this.onInputChange }
             />
           </label>
           <label htmlFor="password">
@@ -54,12 +54,12 @@ class Login extends React.Component {
               type="text"
               name="password"
               value={ password }
-              onChange={ this.onHandleChange }
+              onChange={ this.onInputChange }
             />
           </label>
           <button
             type="button"
-            onClick={ this.onHandleSubmit }
+            onClick={ this.onSubmit }
             disabled={ isEntryButtonDisabled }
           >
             Entrar

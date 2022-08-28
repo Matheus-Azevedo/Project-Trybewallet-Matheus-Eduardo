@@ -28,3 +28,11 @@ export function currenciesFetchAPI() {
     }
   };
 }
+// Expenses Actions
+export const REQUEST_EXPENSES = 'REQUEST_EXPENSES';
+export const requestExpenses = (value) => ({
+  type: REQUEST_EXPENSES, value });
+// TotalSpend Actions
+export const REQUEST_TOTAL_SPEND = 'REQUEST_TOTAL_SPEND';
+export const requestTotalSpend = (value) => ({
+  type: REQUEST_TOTAL_SPEND, value });
