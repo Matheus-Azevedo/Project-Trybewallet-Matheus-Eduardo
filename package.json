@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "@redux-devtools/extension": "3.2.2",
+    "@tanstack/react-table": "^8.5.11",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.6.3",
