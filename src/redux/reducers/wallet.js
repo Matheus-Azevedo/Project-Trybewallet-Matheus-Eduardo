@@ -1,4 +1,7 @@
-import { REQUEST_WALLET } from '../actions';
+import {
+  REQUEST_CURRENCIES,
+  REQUEST_CURRENCIES_FAILURE,
+} from '../actions/index';
 
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 
@@ -7,17 +10,20 @@ const INITIAL_STATE = {
   expenses: [], // array de objetos, com cada objeto tendo as chaves id, value, currency, method, tag, description e exchangeRates
   editor: false, // valor booleano que indica de uma despesa está sendo editada
   idToEdit: 0, // valor numérico que armazena o id da despesa que esta sendo editada
+  error: null,
 };
 
 function reducerWallet(state = INITIAL_STATE, action) {
   switch (action.type) {
-  case REQUEST_WALLET:
+  case REQUEST_CURRENCIES:
     return {
       ...state,
       currencies: action.currencies,
-      expenses: action.expenses,
-      editor: action.editor,
-      idToEdit: action.idToEdit,
+    };
+  case REQUEST_CURRENCIES_FAILURE:
+    return {
+      ...state,
+      error: action.error,
     };
   default:
     return state;
