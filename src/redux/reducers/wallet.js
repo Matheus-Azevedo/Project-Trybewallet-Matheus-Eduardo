@@ -3,6 +3,8 @@ import {
   REQUEST_CURRENCIES_FAILURE,
   REQUEST_EXPENSES,
   REQUEST_TOTAL_SPEND,
+  REQUEST_DELETE_ELEMENT,
+  REQUEST_DECREMENT_TOTAL_SPEND,
 } from '../actions/index';
 
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
@@ -18,6 +20,16 @@ const INITIAL_STATE = {
 
 function reducerWallet(state = INITIAL_STATE, action) {
   switch (action.type) {
+  case REQUEST_DELETE_ELEMENT:
+    return {
+      ...state,
+      expenses: state.expenses.filter((expense) => expense.id !== action.value),
+    };
+  case REQUEST_DECREMENT_TOTAL_SPEND:
+    return {
+      ...state,
+      totalSpend: (Number(state.totalSpend) - Number(action.value)).toFixed(2),
+    };
   case REQUEST_TOTAL_SPEND:
     return {
       ...state,

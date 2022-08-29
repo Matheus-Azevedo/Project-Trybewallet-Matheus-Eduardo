@@ -36,3 +36,11 @@ export const requestExpenses = (value) => ({
 export const REQUEST_TOTAL_SPEND = 'REQUEST_TOTAL_SPEND';
 export const requestTotalSpend = (value) => ({
   type: REQUEST_TOTAL_SPEND, value });
+
+export const REQUEST_DECREMENT_TOTAL_SPEND = 'REQUEST_DECREMENT_TOTAL_SPEND';
+export const requestDecrementTotalSpend = (value) => ({
+  type: REQUEST_DECREMENT_TOTAL_SPEND, value });
+// Element Table Actions
+export const REQUEST_DELETE_ELEMENT = 'REQUEST_DELETE_ELEMENT';
+export const requestDeleteElementTable = (value) => ({
+  type: REQUEST_DELETE_ELEMENT, value });

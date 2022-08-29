@@ -42,12 +42,12 @@ class WalletForm extends Component {
     const data = await this.expensesFetchAPI();
     this.setState({ exchangeRates: data }, () => {
       const { exchangeRates, currency, value } = this.state;
-      dispatch(requestExpenses(this.state));
       const moeda = Object.keys(exchangeRates).filter((coin) => (
         coin === currency
       ));
       const result = (exchangeRates[moeda].ask * value);
       dispatch(requestTotalSpend(result));
+      dispatch(requestExpenses(this.state));
       this.setState({
         value: '',
         currency: 'USD',
