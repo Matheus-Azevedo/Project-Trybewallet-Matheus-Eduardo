@@ -16,7 +16,7 @@ class Header extends Component {
             BRL
           </div>
           <div data-testid="total-field">
-            { totalSpend }
+            { Number(totalSpend).toFixed(2) }
           </div>
         </div>
       </header>

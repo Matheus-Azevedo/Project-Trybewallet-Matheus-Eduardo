@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import Edition from './pages/Edition';
 import Login from './pages/Login';
 import Wallet from './pages/Wallet';
 
@@ -15,6 +16,11 @@ function App() {
         exact
         path="/carteira"
         render={ (props) => <Wallet { ...props } /> }
+      />
+      <Route
+        exact
+        path="/edition/:id"
+        render={ (props) => <Edition { ...props } /> }
       />
     </Switch>
   );

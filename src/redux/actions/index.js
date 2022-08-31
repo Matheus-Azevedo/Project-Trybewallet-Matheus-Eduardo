@@ -32,6 +32,10 @@ export function currenciesFetchAPI() {
 export const REQUEST_EXPENSES = 'REQUEST_EXPENSES';
 export const requestExpenses = (value) => ({
   type: REQUEST_EXPENSES, value });
+
+export const REQUEST_EDIT_EXPENSES = 'REQUEST_EDIT_EXPENSES';
+export const requestEditExpenses = (value) => ({
+  type: REQUEST_EDIT_EXPENSES, value });
 // TotalSpend Actions
 export const REQUEST_TOTAL_SPEND = 'REQUEST_TOTAL_SPEND';
 export const requestTotalSpend = (value) => ({

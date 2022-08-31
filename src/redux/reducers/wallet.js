@@ -5,6 +5,7 @@ import {
   REQUEST_TOTAL_SPEND,
   REQUEST_DELETE_ELEMENT,
   REQUEST_DECREMENT_TOTAL_SPEND,
+  REQUEST_EDIT_EXPENSES,
 } from '../actions/index';
 
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
@@ -28,12 +29,17 @@ function reducerWallet(state = INITIAL_STATE, action) {
   case REQUEST_DECREMENT_TOTAL_SPEND:
     return {
       ...state,
-      totalSpend: (Number(state.totalSpend) - Number(action.value)).toFixed(2),
+      totalSpend: Number(state.totalSpend) - Number(action.value),
     };
   case REQUEST_TOTAL_SPEND:
     return {
       ...state,
-      totalSpend: (Number(state.totalSpend) + Number(action.value)).toFixed(2),
+      totalSpend: Number(state.totalSpend) + Number(action.value),
+    };
+  case REQUEST_EDIT_EXPENSES:
+    return {
+      ...state,
+      expenses: action.value,
     };
   case REQUEST_EXPENSES:
     return {

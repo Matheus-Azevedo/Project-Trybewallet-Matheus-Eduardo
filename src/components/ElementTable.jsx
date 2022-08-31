@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
   requestDecrementTotalSpend,
@@ -16,7 +17,7 @@ class ElementTable extends Component {
 
   render() {
     const {
-      description, tag, method,
+      description, tag, method, id,
       value, currency, exchangeRates,
     } = this.props;
     return (
@@ -40,12 +41,11 @@ class ElementTable extends Component {
         </td>
         <td>Real</td>
         <td>
-          <button
-            data-testid="edit-btn"
-            type="button"
-          >
-            Editar
-          </button>
+          <Link to={ `/edition/${id}` }>
+            <button data-testid="edit-btn" type="button">
+              Editar
+            </button>
+          </Link>
           <button
             data-testid="delete-btn"
             type="button"
@@ -60,6 +60,9 @@ class ElementTable extends Component {
 }
 
 ElementTable.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
   dispatch: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
