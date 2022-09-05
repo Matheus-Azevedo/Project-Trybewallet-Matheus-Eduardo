@@ -59,7 +59,7 @@ class WalletForm extends Component {
     const { value, currency, method, tag, description } = this.state;
     const { currencies } = this.props;
     return (
-      <form>
+      <form className="is-mod-to-forms">
         <label htmlFor="value">
           Valor:
           <input
@@ -117,7 +117,13 @@ class WalletForm extends Component {
             onChange={ this.onInputChange }
           />
         </label>
-        <button type="submit" onClick={ this.onSubmit }>Adicionar despesa</button>
+        <button
+          type="submit"
+          className="button"
+          onClick={ this.onSubmit }
+        >
+          Adicionar despesa
+        </button>
       </form>
     );
   }

@@ -42,11 +42,12 @@ class ElementTable extends Component {
         <td>Real</td>
         <td>
           <Link to={ `/edition/${id}` }>
-            <button data-testid="edit-btn" type="button">
+            <button className="button" data-testid="edit-btn" type="button">
               Editar
             </button>
           </Link>
           <button
+            className="button"
             data-testid="delete-btn"
             type="button"
             onClick={ this.deleteExpense }

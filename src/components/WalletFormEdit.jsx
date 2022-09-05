@@ -64,66 +64,74 @@ class WalletFormEdit extends Component {
     const { value, currency, method, tag, description } = this.state;
     const { currencies } = this.props;
     return (
-      <form>
-        <label htmlFor="value">
-          Valor:
-          <input
-            id="value"
-            data-testid="value-input"
-            type="number"
-            name="value"
-            value={ value }
+      <div className="box-container-2">
+        <form className="box is-mod-to-forms-edit">
+          <label htmlFor="value">
+            Valor:
+            <input
+              id="value"
+              data-testid="value-input"
+              type="number"
+              name="value"
+              value={ value }
+              onChange={ this.onInputChange }
+            />
+          </label>
+          Moeda:
+          <select
+            data-testid="currency-input"
+            name="currency"
+            value={ currency }
             onChange={ this.onInputChange }
-          />
-        </label>
-        Moeda:
-        <select
-          data-testid="currency-input"
-          name="currency"
-          value={ currency }
-          onChange={ this.onInputChange }
-        >
-          { currencies.map((coin, index) => (
-            <option key={ index } value={ coin }>{ coin }</option>
-          )) }
-        </select>
-        Método de pagamento:
-        <select
-          data-testid="method-input"
-          name="method"
-          value={ method }
-          onChange={ this.onInputChange }
-        >
-          <option value="Dinheiro">Dinheiro</option>
-          <option value="Cartão de crédito">Cartão de crédito</option>
-          <option value="Cartão de débito">Cartão de débito</option>
-        </select>
-        Tag:
-        <select
-          data-testid="tag-input"
-          name="tag"
-          value={ tag }
-          onChange={ this.onInputChange }
-        >
-          <option value="Alimentação">Alimentação</option>
-          <option value="Lazer">Lazer</option>
-          <option value="Trabalho">Trabalho</option>
-          <option value="Transporte">Transporte</option>
-          <option value="Saúde">Saúde</option>
-        </select>
-        <label htmlFor="description">
-          Descrição:
-          <input
-            id="description"
-            data-testid="description-input"
-            type="text"
-            name="description"
-            value={ description }
+          >
+            { currencies.map((coin, index) => (
+              <option key={ index } value={ coin }>{ coin }</option>
+            )) }
+          </select>
+          Método de pagamento:
+          <select
+            data-testid="method-input"
+            name="method"
+            value={ method }
             onChange={ this.onInputChange }
-          />
-        </label>
-        <button type="button" onClick={ this.onSubmit }>Editar despesa</button>
-      </form>
+          >
+            <option value="Dinheiro">Dinheiro</option>
+            <option value="Cartão de crédito">Cartão de crédito</option>
+            <option value="Cartão de débito">Cartão de débito</option>
+          </select>
+          Tag:
+          <select
+            data-testid="tag-input"
+            name="tag"
+            value={ tag }
+            onChange={ this.onInputChange }
+          >
+            <option value="Alimentação">Alimentação</option>
+            <option value="Lazer">Lazer</option>
+            <option value="Trabalho">Trabalho</option>
+            <option value="Transporte">Transporte</option>
+            <option value="Saúde">Saúde</option>
+          </select>
+          <label htmlFor="description">
+            Descrição:
+            <input
+              id="description"
+              data-testid="description-input"
+              type="text"
+              name="description"
+              value={ description }
+              onChange={ this.onInputChange }
+            />
+          </label>
+          <button
+            className="button"
+            type="button"
+            onClick={ this.onSubmit }
+          >
+            Editar despesa
+          </button>
+        </form>
+      </div>
     );
   }
 }

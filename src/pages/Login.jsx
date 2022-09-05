@@ -1,5 +1,4 @@
 import React from 'react';
-import '../css/login.css';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { requestEmail } from '../redux/actions';
@@ -33,31 +32,37 @@ class Login extends React.Component {
   render() {
     const { email, password, isEntryButtonDisabled } = this.state;
     return (
-      <main className="login-container">
-        <fieldset>
-          <label htmlFor="email">
-            Email:
-            <input
-              id="email"
-              data-testid="email-input"
-              type="text"
-              name="email"
-              value={ email }
-              onChange={ this.onInputChange }
-            />
-          </label>
-          <label htmlFor="password">
-            Senha:
-            <input
-              id="password"
-              data-testid="password-input"
-              type="text"
-              name="password"
-              value={ password }
-              onChange={ this.onInputChange }
-            />
-          </label>
+      <main className="box-container">
+        <fieldset className="box is-mod-to-login">
+          <h1>TRYBEWALLET</h1>
+          <div className="field">
+            <label htmlFor="email">
+              Email:
+              <input
+                id="email"
+                data-testid="email-input"
+                type="text"
+                name="email"
+                value={ email }
+                onChange={ this.onInputChange }
+              />
+            </label>
+          </div>
+          <div className="field">
+            <label htmlFor="password">
+              Senha:
+              <input
+                id="password"
+                data-testid="password-input"
+                type="text"
+                name="password"
+                value={ password }
+                onChange={ this.onInputChange }
+              />
+            </label>
+          </div>
           <button
+            className="button"
             type="button"
             onClick={ this.onSubmit }
             disabled={ isEntryButtonDisabled }

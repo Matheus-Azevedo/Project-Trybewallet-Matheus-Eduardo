@@ -7,8 +7,8 @@ class Table extends Component {
   render() {
     const { expenses } = this.props;
     return (
-      <table>
-        <thead>
+      <table className="table is-fullwidth is-hoverable">
+        <thead className="thead">
           <th>Descrição</th>
           <th>Tag</th>
           <th>Método de pagamento</th>
