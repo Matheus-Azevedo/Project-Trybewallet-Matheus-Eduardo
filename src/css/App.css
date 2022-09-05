@@ -17,8 +17,8 @@ h1 {
 }
 
 .is-mod-to-login {
-  background-image: linear-gradient(to bottom right, #000, rgb(0, 255, 157), #000);
-  color: #000;
+  background-image: linear-gradient(to bottom right, black, rgb(0, 255, 157), black);
+  color: black;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -29,7 +29,7 @@ h1 {
 
 /* Header */
 .header {
-  background-image: linear-gradient(to bottom right, #000, rgb(0, 255, 157), #000);
+  background-image: linear-gradient(to bottom right, black, rgb(0, 255, 157), black);
   display: flex;
   font-size: 25px;
   height: 100px;
@@ -38,7 +38,7 @@ h1 {
 
 .header .header-content {
   align-items: center;
-  color: #000;
+  color: black;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -51,7 +51,7 @@ h1 {
 }
 
 .header .header-img {
-  content: url("../imgs/pngwing.com.png");
+  content: url('../imgs/pngwing.com.png');
   height: 100px;
   margin-left: 30px;
   width: 100px;
@@ -68,7 +68,7 @@ h1 {
 
 .is-mod-to-forms {
   align-items: center;
-  background-color: #000;
+  background-color: black;
   display: flex;
   font-size: 20px;
   height: 80px;
@@ -80,7 +80,7 @@ h1 {
 }
 
 .is-mod-to-forms-edit {
-  background-color: #000;
+  background-color: black;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -102,7 +102,7 @@ h1 {
 }
 
 .table button {
-  background-color: #000;
+  background-color: black;
   color: rgb(224, 224, 224);
   width: 50px;
 }
