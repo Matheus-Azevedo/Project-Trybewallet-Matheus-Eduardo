@@ -3,7 +3,6 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouterAndRedux from './helpers/renderWith';
 import App from '../App';
-// import { createMemoryHistory } from 'history';
 
 describe('Teste da aplicação.', () => {
   test('01.Teste se o componente App é renderizado.', () => {

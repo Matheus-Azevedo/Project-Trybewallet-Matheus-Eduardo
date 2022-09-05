@@ -11,9 +11,6 @@ describe('Teste da aplicação.', () => {
   });
   test('02.Teste se existe a página de Edition.', () => {
     renderWithRouterAndRedux(<App />, { initialEntries: ['/edition/:id'] });
-    // const textAreas = screen.getAllByRole('textbox');
-    // textAreas.forEach((text) => expect(text).toBeInTheDocument());
-    // textAreas.forEach((text) => userEvent.type(text, 'Matheus'));
   });
   // test('03.Teste para o componente FormDataDisplay.', () => {
   //   renderWithRouterAndRedux(<App />, { initialEntries: ['/formdisplay'] });
