@@ -1,40 +1,50 @@
-import React from 'react';
+import userEvent from '@testing-library/user-event';
+import { screen } from '@testing-library/react';
+import { createMemoryHistory } from 'history';
 import renderWithRouterAndRedux from './helpers/renderWith';
 import App from '../App';
-// import { screen } from '@testing-library/react';
-// import { createMemoryHistory } from 'history';
-// import userEvent from '@testing-library/user-event';
+import mockState from './helpers/mockState';
 
 describe('Teste da aplicação.', () => {
   test('01.Teste se o componente App é renderizado.', () => {
     renderWithRouterAndRedux(<App />);
   });
   test('02.Teste se existe a página de Edition.', () => {
-    renderWithRouterAndRedux(<App />, { initialEntries: ['/edition/:id'] });
+    const history = createMemoryHistory({ initialEntries: ['/carteira'] });
+    const url = renderWithRouterAndRedux(<App />, {
+      history, initialState: mockState });
+    const value = screen.getByLabelText(/Valor:/i);
+    userEvent.type(value, '150');
+    const description = screen.getByLabelText(/Descrição:/i);
+    userEvent.type(description, 'Gastei com o Call of Duty');
+    const currency = screen.getByTestId('currency-input');
+    const method = screen.getByTestId('method-input');
+    const tag = screen.getByTestId('tag-input');
+    userEvent.selectOptions(currency, 'USD');
+    userEvent.selectOptions(method, 'Dinheiro');
+    userEvent.selectOptions(tag, 'Alimentação');
+    const btn = screen
+      .getByRole('button', { name: /adicionar despesa/i });
+    userEvent.click(btn);
+
+    const btn2 = screen
+      .getByRole('button', { name: /Editar/i });
+    userEvent.click(btn2);
+    const { pathname } = url.history.location;
+    expect(pathname).toBe('/edition/0');
   });
-  // test('03.Teste para o componente FormDataDisplay.', () => {
-  //   renderWithRouterAndRedux(<App />, { initialEntries: ['/formdisplay'] });
-  //   const name = screen.getByText(/nome/i);
-  //   expect(name).toBeInTheDocument();
-  // });
-  // test('04.Teste para o PersonalForm.', () => {
-  //   renderWithRouterAndRedux(<App />, { initialEntries: ['/'] });
-  //   const name = screen.getByLabelText(/nome/i);
-  //   userEvent.type(name, 'Matheus');
-  //   const btn = screen
-  //     .getByRole('button', { name: /enviar/i });
-  //   expect(btn).toBeInTheDocument();
-  //   userEvent.click(btn);
-  // });
-  // test('05.Teste dos states.', () => {
-  //   const history = createMemoryHistory();
-  //   const { store } = renderWithRouterAndRedux(<ProfessionalForm history={ history } />);
-  //   const curriculum = screen.getByLabelText(/Resumo do currículo:/i);
-  //   userEvent.type(curriculum, 'Meu curriculum');
-  //   const btn = screen
-  //     .getByRole('button', { name: /enviar/i });
-  //   userEvent.click(btn);
-  //   // console.log(store.getState().profile.professional.curriculum);
-  //   expect(store.getState().profile.professional.curriculum).toBe('Meu curriculum');
-  // });
+  test('03.Teste se a página Edition tem os inputs', () => {
+    const five = 5;
+    const history = createMemoryHistory({ initialEntries: ['/carteira'] });
+    renderWithRouterAndRedux(<App />, {
+      history, initialState: mockState });
+    const btn2 = screen
+      .getByRole('button', { name: /Editar/i });
+    userEvent.click(btn2);
+    expect(screen.getByLabelText(/Valor:/i)).toHaveValue(five);
+    expect(screen.getByLabelText(/Descrição:/i)).toHaveValue('Sem descrição');
+    expect(screen.getByTestId('currency-input')).toHaveValue('USD');
+    expect(screen.getByTestId('method-input')).toHaveValue('Dinheiro');
+    expect(screen.getByTestId('tag-input')).toHaveValue('Alimentação');
+  });
 });

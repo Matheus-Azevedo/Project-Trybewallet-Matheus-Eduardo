@@ -1,8 +1,10 @@
-import React from 'react';
 import { screen } from '@testing-library/react';
+import { createMemoryHistory } from 'history';
 import userEvent from '@testing-library/user-event';
 import renderWithRouterAndRedux from './helpers/renderWith';
 import App from '../App';
+import mockState from './helpers/mockState';
+import Wallet from '../pages/Wallet';
 
 describe('Teste da aplicação.', () => {
   test('01.Teste se o componente App é renderizado.', () => {
@@ -12,34 +14,50 @@ describe('Teste da aplicação.', () => {
     renderWithRouterAndRedux(<App />, { initialEntries: ['/carteira'] });
   });
   test('03.Teste para o inputs do forms da Carteira.', () => {
-    renderWithRouterAndRedux(<App />, { initialEntries: ['/carteira'] });
+    renderWithRouterAndRedux(<App />, {
+      initialEntries: ['/carteira'], initialState: mockState });
     const value = screen.getByLabelText(/Valor:/i);
     userEvent.type(value, '150');
     const description = screen.getByLabelText(/Descrição:/i);
     userEvent.type(description, 'Gastei com o Call of Duty');
+
+    const currency = screen.getByTestId('currency-input');
+    const method = screen.getByTestId('method-input');
+    const tag = screen.getByTestId('tag-input');
+    userEvent.selectOptions(currency, 'USD');
+    userEvent.selectOptions(method, 'Dinheiro');
+    userEvent.selectOptions(tag, 'Alimentação');
+
     const btn = screen
       .getByRole('button', { name: /adicionar despesa/i });
     expect(btn).toBeInTheDocument();
     userEvent.click(btn);
   });
-  // test('04.Teste para o PersonalForm.', () => {
-  //   renderWithRouterAndRedux(<App />, { initialEntries: ['/'] });
-  //   const name = screen.getByLabelText(/nome/i);
-  //   userEvent.type(name, 'Matheus');
-  //   const btn = screen
-  //     .getByRole('button', { name: /enviar/i });
-  //   expect(btn).toBeInTheDocument();
-  //   userEvent.click(btn);
-  // });
-  // test('05.Teste dos states.', () => {
-  //   const history = createMemoryHistory();
-  //   const { store } = renderWithRouterAndRedux(<ProfessionalForm history={ history } />);
-  //   const curriculum = screen.getByLabelText(/Resumo do currículo:/i);
-  //   userEvent.type(curriculum, 'Meu curriculum');
-  //   const btn = screen
-  //     .getByRole('button', { name: /enviar/i });
-  //   userEvent.click(btn);
-  //   // console.log(store.getState().profile.professional.curriculum);
-  //   expect(store.getState().profile.professional.curriculum).toBe('Meu curriculum');
-  // });
+  test('04.Teste para Wallet Reducer.', () => {
+    const history = createMemoryHistory({ initialEntries: ['/carteira'] });
+    const { store } = renderWithRouterAndRedux(<Wallet />, {
+      history, initialState: mockState });
+    const value = screen.getByLabelText(/Valor:/i);
+    userEvent.type(value, '150');
+    const description = screen.getByLabelText(/Descrição:/i);
+    userEvent.type(description, 'Gastei com o Call of Duty');
+    const currency = screen.getByTestId('currency-input');
+    const method = screen.getByTestId('method-input');
+    const tag = screen.getByTestId('tag-input');
+    userEvent.selectOptions(currency, 'USD');
+    userEvent.selectOptions(method, 'Dinheiro');
+    userEvent.selectOptions(tag, 'Alimentação');
+    const btn = screen
+      .getByRole('button', { name: /adicionar despesa/i });
+    userEvent.click(btn);
+    expect(store.getState().wallet.expenses[0].method).toBe('Dinheiro');
+  });
+  test('05.Teste se a página Carteira realiza o fetch', () => {
+    const history = createMemoryHistory({ initialEntries: ['/carteira'] });
+    renderWithRouterAndRedux(<Wallet />, { history, initialState: mockState });
+    const moeda = screen.getByText(/Dólar Americano/i);
+    const btn = screen.getByTestId('delete-btn');
+    userEvent.click(btn);
+    expect(moeda).not.toBeInTheDocument();
+  });
 });
